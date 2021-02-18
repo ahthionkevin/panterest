@@ -29,12 +29,12 @@ class Pin
     private $description;
 
     /**
-     * @ORM\Column(type="datetime", options={"default":"CURRENT_TIMESTAMP"})
+     * @ORM\Column(type="datetime")
      */
     private $createdAt;
 
     /**
-     * @ORM\Column(type="datetime", options={"default":"CURRENT_TIMESTAMP"})
+     * @ORM\Column(type="datetime")
      */
     private $updatedAt;
 
@@ -97,9 +97,7 @@ class Pin
      */
     public function updateTimestamp()
     {
-        if($this->getCreatedAt()===NULL)
-            $this->setCreatedAt(new \DateTimeImmutable);
-        
+        $this->setCreatedAt(new \DateTimeImmutable);
         $this->setUpdatedAt(new \DateTimeImmutable);
     }
 }
