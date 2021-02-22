@@ -4,7 +4,7 @@ namespace App\Entity;
 
 use App\Repository\PinRepository;
 use Doctrine\ORM\Mapping as ORM;
-use App\Entity\Traits\TimeStampable;
+use App\Entity\Trait\TimeStampable;
 
 /**
  * @ORM\Entity(repositoryClass=PinRepository::class)

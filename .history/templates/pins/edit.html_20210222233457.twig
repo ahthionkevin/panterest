@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Edit Pin ~{{ pin.id}}{% endblock %}
+
+{% block body %}
+
+    <a href="{{path('app_home')}}">Go back</a>
+    <h1>Modifier Pin# {{ pin.id }} </h1>
+
+    {{ form_start(formulaire) }}
+        {{ form_widget(formulaire) }}
+
+            <input type="Submit" value="Update Pin">
+    {{ form_end(formulaire) }}
+
+{% endblock %}

@@ -60,13 +60,14 @@ class PinsController extends AbstractController
 
         return $this->render('pins/create.html.twig',['formulaire'=>$form->createView()]);
     }
-
+}
 
     /**
-     * @Route("/pins/{id<[0-9]+>}/edit", name="app_pin_edit",methods={"GET","POST"})
+     * @Route("/pins/create", name="app_create_pin",methods={"GET","POST"})
      */
-    public function edit(Pin $pin,Request $request,EntityManagerInterface $em): Response
+    public function edit(Request $request,EntityManagerInterface $em): Response
     {
+        $pin=new Pin;
 
         $form=$this->createFormBuilder($pin)
             ->add('Title',TextType::class)
@@ -77,11 +78,12 @@ class PinsController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) 
         { 
+            $em->persist($pin);
             $em->flush();
 
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->render('pins/edit.html.twig',['formulaire'=>$form->createView(),'pin'=>$pin]);
+        return $this->render('pins/create.html.twig',['formulaire'=>$form->createView()]);
     }
 }

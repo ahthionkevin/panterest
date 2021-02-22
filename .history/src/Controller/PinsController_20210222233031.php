@@ -82,6 +82,6 @@ class PinsController extends AbstractController
             return $this->redirectToRoute('app_home');
         }
 
-        return $this->render('pins/edit.html.twig',['formulaire'=>$form->createView(),'pin'=>$pin]);
+        return $this->render('pins/edit.html.twig',['formulaire'=>$form->createView()]);
     }
 }

@@ -15,7 +15,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 class PinsController extends AbstractController
 {
     /**
-     * @Route("/", name="app_home",methods={"GET"})
+     * @Route("/", name="app_home"),methods={"GET"}
      */
     public function index(PinRepository $pinRepository): Response
     {
@@ -26,7 +26,7 @@ class PinsController extends AbstractController
     }
 
     /**
-     * @Route("/pins/{id<[0-9]+>}", name="app_pin_show",methods={"GET"})
+     * @Route("/pins/{id<[0-9]+>}", name="app_pin_show")
      */
     public function show(Pin $pin): Response
     {
@@ -41,47 +41,17 @@ class PinsController extends AbstractController
      */
     public function create(Request $request,EntityManagerInterface $em): Response
     {
-        $pin=new Pin;
-
-        $form=$this->createFormBuilder($pin)
+        $form=$this->createFormBuilder()
             ->add('Title',TextType::class)
             ->add('Description',TextareaType::class)
             ->getForm();
 
         $form->handleRequest($request);
         
-        if ($form->isSubmitted() && $form->isValid()) 
-        { 
-            $em->persist($pin);
-            $em->flush();
-
-            return $this->redirectToRoute('app_home');
+        if ($form->isSubmitted() && $form->isValid()) { 
+            
         }
 
         return $this->render('pins/create.html.twig',['formulaire'=>$form->createView()]);
-    }
-
-
-    /**
-     * @Route("/pins/{id<[0-9]+>}/edit", name="app_pin_edit",methods={"GET","POST"})
-     */
-    public function edit(Pin $pin,Request $request,EntityManagerInterface $em): Response
-    {
-
-        $form=$this->createFormBuilder($pin)
-            ->add('Title',TextType::class)
-            ->add('Description',TextareaType::class)
-            ->getForm();
-
-        $form->handleRequest($request);
-        
-        if ($form->isSubmitted() && $form->isValid()) 
-        { 
-            $em->flush();
-
-            return $this->redirectToRoute('app_home');
-        }
-
-        return $this->render('pins/edit.html.twig',['formulaire'=>$form->createView(),'pin'=>$pin]);
     }
 }

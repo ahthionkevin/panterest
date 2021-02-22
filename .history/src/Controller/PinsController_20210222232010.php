@@ -60,7 +60,7 @@ class PinsController extends AbstractController
 
         return $this->render('pins/create.html.twig',['formulaire'=>$form->createView()]);
     }
-
+}
 
     /**
      * @Route("/pins/{id<[0-9]+>}/edit", name="app_pin_edit",methods={"GET","POST"})
@@ -77,11 +77,12 @@ class PinsController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) 
         { 
+            $em->persist($pin);
             $em->flush();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_show');
         }
 
-        return $this->render('pins/edit.html.twig',['formulaire'=>$form->createView(),'pin'=>$pin]);
+        return $this->render('pins/edit.html.twig',['formulaire'=>$form->createView()]);
     }
 }

@@ -77,11 +77,12 @@ class PinsController extends AbstractController
         
         if ($form->isSubmitted() && $form->isValid()) 
         { 
+            $em->persist($pin);
             $em->flush();
 
-            return $this->redirectToRoute('app_home');
+            return $this->redirectToRoute('app_pin_show');
         }
 
-        return $this->render('pins/edit.html.twig',['formulaire'=>$form->createView(),'pin'=>$pin]);
+        return $this->render('pins/edit.html.twig',['formulaire'=>$form->createView()]);
     }
 }
