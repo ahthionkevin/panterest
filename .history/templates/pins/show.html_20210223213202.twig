@@ -6,7 +6,7 @@
     <p>
         <a href="{{ path('app_home') }}">Go back</a> | 
         <a href="{{ path('app_pin_edit',{id:pin.id}) }}">Edit</a> | 
-        <a href="#" onclick="event.preventDefault(); confirm('Are you Sure') && document.getElementById('is-pin-delete-form').submit();">Delete</a>
+        <a href="#" onclick="event.preventDefault(); document.getElementById('is-pin-delete-form').submit();">Delete</a>
     </p>
     <h1>{{ pin.getTitle() }}</h1>
     <p>{{ pin.getDescription() }}</p>

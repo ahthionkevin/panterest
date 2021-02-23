@@ -6,12 +6,12 @@
     <p>
         <a href="{{ path('app_home') }}">Go back</a> | 
         <a href="{{ path('app_pin_edit',{id:pin.id}) }}">Edit</a> | 
-        <a href="#" onclick="event.preventDefault(); confirm('Are you Sure') && document.getElementById('is-pin-delete-form').submit();">Delete</a>
+        <a href="#">Delete</a>
     </p>
     <h1>{{ pin.getTitle() }}</h1>
     <p>{{ pin.getDescription() }}</p>
 
-    <form id="is-pin-delete-form"  method="POST" action=" {{ path('app_pin_delete',{id:pin.id})}} " style="display:none">
+    <form id="is-pin-delete-form" onclick="event.preventDefault(); document.getElementById('is-pin-delete-form').submit();" method="POST" action=" {{ path('app_pin_delete',{id:pin.id})}} " style="display:none">
         <input type="hidden" name="_method" value="DELETE">
     </form>
 
