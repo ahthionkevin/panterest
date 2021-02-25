@@ -9,7 +9,7 @@
         <article>
             <h2><a href="{{ path('app_pin_show',{id:pin.getId()})}}">{{ pin.getTitle() }}</a></h2>
             <p>{{ pin.getDescription()|u.truncate(10,'...',false) }}</p>
-            <p>Submitted:{{ pin.createdAt|ago}}</p>
+            <p>Submitted:{{ pin.createdAt|date}}</p>
         </article>
     {% endfor %}
 {% endblock %}
