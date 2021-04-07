@@ -4,6 +4,8 @@ namespace App\Entity;
 
 use App\Repository\PinRepository;
 use Doctrine\ORM\Mapping as ORM;
+use App\Entity\Traits\TimeStampable;
+use Symfony\Component\Validator\Constraints as Assert;
 
 /**
  * @ORM\Entity(repositoryClass=PinRepository::class)
@@ -11,6 +13,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Pin
 {
+    use TimeStampable;
     /**
      * @ORM\Id
      * @ORM\GeneratedValue
@@ -20,24 +23,17 @@ class Pin
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\NotBlank(message="Title can't be Empty")
      */
     private $title;
 
     /**
      * @ORM\Column(type="text")
+     *  @Assert\NotBlank
      */
     private $description;
 
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $createdAt;
-
-    /**
-     * @ORM\Column(type="datetime")
-     */
-    private $updatedAt;
-
+    
     public function getId(): ?int
     {
         return $this->id;
@@ -67,37 +63,6 @@ class Pin
         return $this;
     }
 
-    public function getCreatedAt(): ?\DateTimeInterface
-    {
-        return $this->createdAt;
-    }
-
-    public function setCreatedAt(\DateTimeInterface $createdAt): self
-    {
-        $this->createdAt = $createdAt;
-
-        return $this;
-    }
-
-    public function getUpdatedAt(): ?\DateTimeInterface
-    {
-        return $this->updatedAt;
-    }
-
-    public function setUpdatedAt(\DateTimeInterface $updatedAt): self
-    {
-        $this->updatedAt = $updatedAt;
-
-        return $this;
-    }
-
-    /**
-     * @ORM\PrePersist
-     * @ORM\PreUpdate
-     */
-    public function updateTimestamp()
-    {
-        setCreatedAt(new \DateTimeImmutable);
-        setUpdatedAt(new \DateTimeImmutable)''
-    }
+   
+    
 }
