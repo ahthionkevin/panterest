@@ -96,8 +96,8 @@ class PinsController extends AbstractController
      */
     public function delete(Request $request,Pin $pin,EntityManagerInterface $em): Response
     {
-        $submittedToken='pin_deletion_';
-
+        $submittedToken='pin_deletion_'. $pin->getId();
+        echo $submittedToken;
         if($this->isCsrfTokenValid($submittedToken, $request->request->get('csrf_token')))
         {    
             $em->remove($pin);
