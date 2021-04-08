@@ -3,7 +3,11 @@
 {% block title %} {{ pin.getTitle() }}{% endblock %}
 
 {% block body %}
-    
+    <p>
+        
+        <a href="{{ path('app_pin_edit',{id:pin.id}) }}">Edit</a> | 
+        <a href="#" onclick="event.preventDefault(); confirm('Are you Sure') && document.getElementById('is-pin-delete-form').submit();">Delete</a>
+    </p>
     <h1>{{ pin.getTitle() }}</h1>
     <p>{{ pin.getDescription() }}</p>
 
@@ -12,9 +16,5 @@
         <input type="hidden" name="csrf_token" value="{{ csrf_token('pin_deletion_') }}">
     </form>
 
-    <p>
-        <a href="{{ path('app_pin_edit',{id:pin.id}) }}">Edit</a> | 
-        <a href="#" onclick="event.preventDefault(); confirm('Are you Sure') && document.getElementById('is-pin-delete-form').submit();">Delete</a>
-    </p>
 
 {% endblock %}
