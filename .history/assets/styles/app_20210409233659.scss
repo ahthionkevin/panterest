@@ -1,0 +1,40 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:&display=swap');
+@import "~bootstrap/scss/bootstrap";
+
+body
+{
+    font-family: 'Montserrat', sans-serif;
+    background-color: lightgray;
+}
+.alert
+{
+    padding: 10px;
+    text-align: center;
+    margin: 0px;
+    border: none;
+    border-radius: 0;
+
+    &.alert-success
+    {
+        background-color: green;
+        color: white;
+    }
+
+    &.alert-error
+    {
+        background-color: red;
+        color: white;
+    }
+
+    &.alert-info
+    {
+        background-color: blue;
+        color: white;
+    }
+}
+
+
+
+
+
+
