@@ -21,11 +21,3 @@
 npm-debug.log
 yarn-error.log
 ###< symfony/webpack-encore-bundle ###
-
-
-###> custom env-vars ###
-/node_modules/
-/public/uploads/
-npm-debug.log
-yarn-error.log
-###< end custom end-vars ###
